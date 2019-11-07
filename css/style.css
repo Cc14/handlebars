@@ -1,0 +1,99 @@
+*{padding:0;margin:0;}
+li{
+    list-style: none;
+}
+.classes ul{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+    float: left;
+}
+.classes ul li{
+    float: left;
+    width: 29%;
+    margin:20px 2% 0 2%;
+}
+.classes ul li:hover{
+    box-shadow: 10px 10px 10px rgba(0,0,0,.8);
+}
+.classes .innerbox{
+    margin:20px auto;
+    width: 90%;
+}
+.classes img{
+    width: 100%;
+}
+.classes .title{
+    display: inline-block;
+    max-width: 75%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.classes .note{
+    font-size: 14px;
+    vertical-align: top;
+}
+.classes .subtitle{
+    max-width: 75%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.classes .short{
+    color: #D64BD3;
+}
+.classes .long{
+    color: #D6984D;
+}
+.pag ul{
+    margin:60px 0;
+    text-align: center;
+}
+.pag li{
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 50%;
+    display: inline-block;
+    background: #F0F0F0;
+}
+.pag li.cur{
+    background: #FFEDB2;
+}
+.pag li.clickable{
+    background:#D6F2FF;
+}
+.pag li.clickable:hover{
+    cursor: pointer;
+    background: #B9CBF7;
+}
+.overlap{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.5);
+    display: none;
+}
+.notedetail{
+    position: fixed;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+    background: #fff;
+    display: none;
+}
+.notedetail .chapterdiv,.notedetail .notediv{
+    float: left;
+    width: 50%;
+    height: 100%;
+}
+.notedetail .chapterdiv{
+    background: #E8E8FF;
+}
+.notedetail .notediv{
+    background: #FFE3E5;
+}

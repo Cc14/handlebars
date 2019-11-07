@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script>
+    <script type="text/x-handlebars-template" id="testArr">
+        <div>
+            {{#each this}}
+            <div class="card">
+                {{chinese @index}}
+                <div>姓名：{{name}}</div>
+                {{#if birth}}
+                <div>出生日期：{{birth}}</div>
+                {{/if}}
+                <div>出生地：{{home}}</div>
+                <div>职业：{{job}}</div>
+                <ul>
+                    {{#each books}}
+                    <li 
+                        {{#isfirst @index}}style="color:red"{{/isfirst}}
+                        {{#if ../blue}}style="color:blue"{{/if}}
+                    >{{addOne @../index}}-{{addOne @index}}{{this}}</li>
+                    {{/each}}
+                </ul>
+                <!-- <ul>
+                    {{#with books}} <!--加了词句表示把内部的this指向books-->
+                        <!-- {{#each this}}
+                            <li>{{this}}</li>
+                        {{/each}}
+                    {{/with}}
+                </ul> -->
+            </div>
+            {{/each}}
+        </div>
+    </script>
+</head>
+<body>
+        <div id="arrbox"></div>
+        <style>
+            .card{
+                float: left;
+                width: 20%;
+                background: pink;
+            }
+        </style>
+        <!--
+            需求：
+            1、卡片上增加中文序号
+            2、书籍前面曾家数字序号，格式为卡片序号-书籍序号
+            3、第一本书用红色显示
+            4、如果一个人有超过两本书，那么初了第一本书外，其余显示为蓝色
+
+        -->
+        <script>
+            var data=[
+                {
+                    name:'凯文米特尼克',
+                    birth:'1963年8月6日',
+                    home:'美国洛杉矶',
+                    job:'网络安全咨询师',
+                    books:[
+                        '《欺骗的艺术》',
+                        '《入侵的艺术》',
+                        '《线上幽灵》'
+                    ]
+                },
+                {
+                    name:'沃兹尼亚克',
+                    birth:'1963年8月6日',
+                    home:'美国洛杉矶',
+                    job:'电脑工程师',
+                    books:[
+                        '《与苹果一起疯狂》'
+                    ]
+                },
+                {
+                    name:'沃兹尼亚克',
+                    birth:'',
+                    home:'美国洛杉矶',
+                    job:'电脑工程师',
+                    books:[
+                        '《与苹果一起疯狂》',
+                        '《线上幽灵》'
+                    ]
+                }
+                
+            ]
+            Handlebars.registerHelper("chinese",function(value){
+                var arr=['一','二','三']
+                if(this.books && this.books.length>=2){
+                    this.blue=1;
+                }
+                return arr[value]
+            })
+            Handlebars.registerHelper("addOne",function(value){
+                return value+1
+            })
+            Handlebars.registerHelper("isfirst",function(value,options){
+                if(value===0){
+                    return options.fn(this)
+                }
+            })
+            // Handlebars.registerHelper("isblue",function(value,options){
+            //     if(value && value.length>2){
+            //         return options.fn(this)
+            //     }
+            // })
+            var t=$('#testArr').html();
+            var f=Handlebars.compile(t);
+            var h=f(data)
+            $('#arrbox').html(h)
+
+            
+        </script>
+</body>
+</html>

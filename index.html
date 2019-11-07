@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    
+    <script type="text/x-handlebars-template" id="class-template">
+        <ul>
+            {{#each this}}
+            <li>
+                <div class="innerbox">
+                    <img src="{{image}}" alt="{{image}}">
+                    <div class="titlediv">
+                        <span class="title">{{title}}</span>
+                        {{#equal hasnote 1}}<span class="note">有笔记</span>{{/equal}}
+                    </div>
+                    <div class="subtitle">{{subtitle}}</div>
+                    <div class="subtitle {{#long timespan}} long {{else}} short {{/long}}">时间：{{timespan}}</div>
+                </div>
+            </li>
+            {{/each}}
+        </ul>
+    </script>
+    <script type="text/x-handlebars-template" id="pag-template">
+        <ul>
+            {{#each this}}
+            <li data-id="{{index}}"
+                {{#if cur}} class="cur" {{/if}}
+                {{#if clickable}}class="clickable"{{/if}}
+            >{{{text}}}</li>
+            {{/each}}
+        </ul>
+    </script>
+</head>
+<body>
+    <div id="classes" class="classes"></div>
+    <div class="pag" id="pag"></div>
+    <div class="overlap"></div>
+    <div class="notedetail">
+        <div class="chapterdiv"></div>
+        <div class="notediv"></div>
+    </div>
+    
+<script src="js/script.js"></script>   
+</body>
+
+</html>
